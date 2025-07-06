@@ -16,18 +16,17 @@ You will always remember your best friend growing up, the teachers and mentors w
 The job of a Data Analyst is to look at these events and understand the story from a third party's perspective. We seek to understand the facts. (Yes, that person at the bar last week was indeed flirting with you.)
 
 
-<br/>
 What are the different types of data files?
 Excel is capable of handling various types of files but the focus of this tutorial will be on .csv, .txt, and .xlsx. .Xlsx is the default format for a workbook in Excel. A .csv file is known as a Comma-separated values file, meaning if you were to open a notepad in Windows and type in a string like "Meal, Date, Calories, Cost, Worth" and on the next line "Burgers, 01/01/2025, 700, $33.76, No", saved it as a .csv, then opened it in Excel you would get the following:
 
 ![Error](Img2.png)
 
 Simply put, in a .csv file, the commas separate data values into columns, while a new line constitutes a record or a row. If you save it as a csv but there are no commas in the file, then each line will represent a record but there will only be one column. A .txt file is a text file with or without commas. When you try to open this in Excel it will ask you how you want to separate/format your data. If it does not have separators Excel will try to auto-format the data usually by spaces or fixed width. Obviously this can lead to data not being contained in the appropriate column and being hard to work with.
-<br/>
+
 **Step 1: Define the Problem or Question**
-<br/>
+
 You need to understand the problem before you can come up with a solution. This is in my opinion the most important step as it directs the rest of your efforts moving forward. If you have a bad hypothesis and spend hours of your time setting up pipelines and gathering data that is irrelevant to the problem you're studying it will show in your final result. If you don't know where to start it's recommended you become somewhat familiar with the subject matter and be able to define or understand the variables that determine success (and/or failure).
-<br/>
+
 The dataset we are working with contains information scraped from IMDB regarding the "top" Netflix movies and TV shows.
 With just the basic understanding of what should be in this data file I can begin cleaning it. First we need to load the .csv file into Excel. You can open the file in notepad first to see if it's at least formatted correctly using comma seperators.
 
@@ -73,9 +72,10 @@ Okay let's visually inspect the columns, on initial inspection we see that:
 
 <br/>**Gross** = Gross revenue generated from box office
 
-<br/>
 Unfortunately the first run through left me without a clear understanding of some of the column values. I shouldn't _assume_ I understand the meaning of certain columns since that could _impact my results_ and lead me to _misrepresent data_ as something other than what it was intended.
+
 Let's see if we can find a glossary on the IMDB(source-verified) website to clarify.
+
 ![Error](imdbdatadictionary.png)
 
 ![Error](ratingsdefinition.png)
@@ -83,6 +83,7 @@ Let's see if we can find a glossary on the IMDB(source-verified) website to clar
 ![Error](weightedavg.png)
 
 Now we have a better understanding of the columns and what they represent. So finally we can say the dataset is comprised of user-submitted reviews for Netflix Movies and TV shows on IMDB. The person who submitted this dataset included the word "top" to describe this list, however seeing as there are ten thousand records I am curious about their definition.
+
 What does this data provide and what can we hope to gain from it? As you can see, as I was performing the initial steps of preparing the data I already had some questions in mind as I skimmed through the records. If I were to scrape this data myself or used an API, the process would have been similar only I would have known what I was trying to collect beforehand. Here I'm simply understanding the data as if it was a report handed to me, or requested from a different department. 
 
 **Step 3: Clean Data**
@@ -117,6 +118,7 @@ Now it's time to separate the start year and end year in case we want to do some
 I select Add Custom Column and enter the following formula: =if Text.Contains([YEAR.1], "–") and ([YEAR.2] = null or [YEAR.2] = "") then "Ongoing" else "Finished") which is saying "If the string in the YEAR.1 column contains a hyphen AND the YEAR.2 column does not contain any value or is 'null' (meaning no end date), THEN it is "Ongoing", otherwise it is "Finished".
 
 Finally I want to separate the STARS column into Directors and Actors for future queries. This would allow me to run a command in SQL or Python to return things such as "What was X director's/actor's highest rated movie/tv show by ratings AND votes". Since some directors also star in their own films you could filter that as well.
+
 Again we Add Custom Column and use a function to strip the information we are looking for. 
 
 ![Error](directorscolumn.png)
