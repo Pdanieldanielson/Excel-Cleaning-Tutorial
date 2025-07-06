@@ -43,15 +43,24 @@ Before you begin defining the columns expand everything to a pre-formatted view.
 ![Error](expand3.png)
 <br/>
 Okay let's visually inspect the columns, on initial inspection we see that:
-<br/>Movies = Title of the movie
-<br/>Year = Year released (Ordinal value)
-<br/>Genre = Classified Genre (Nominal, could be used for popularity or ranking)
-<br/>Rating = The rating given by User? Overall? Critic? (We'll have to check on this)
-<br/>One-line = One-line description of movie (Could be used in phrase analysis to identify movies having similar plots vs reviews, it's a stretch)
-<br/>Stars = Who is in the movie, some records include directors while others only list actors (Interesting to see average rating of movies for certain celebrities and directors, even though it's based on an entirely subjective scale)
-<br/>Votes = Total votes (Votes by whom and what context. Votes for Actor, Director, Cinematography, Hair, Amount of hand lotion used by cameramen? Best use of funfetti on the cupcakes at craft services? What does Votes mean and who are casting them?)
-<br/>Runtime = How long the movie was in minutes
-<br/>Gross = Gross revenue generated from box office
+<br/>**Movies** = Title of the movie
+
+<br/>**Year** = Year released (Ordinal value)
+
+<br/>**Genre** = Classified Genre (Nominal, could be used for popularity or ranking)
+
+<br/>**Rating** = The rating given by User? Overall? Critic? (We'll have to check on this)
+
+<br/>**One-line** = One-line description of movie (Could be used in phrase analysis to identify movies having similar plots vs reviews, it's a stretch)
+
+<br/>**Stars** = Who is in the movie, some records include directors while others only list actors (Interesting to see average rating of movies for certain celebrities and directors, even though it's based on an entirely subjective scale)
+
+<br/>**Votes** = Total votes (Votes by whom and what context. Votes for Actor, Director, Cinematography, Hair, Amount of hand lotion used by cameramen? Best use of funfetti on the cupcakes at craft services? What does Votes mean and who are casting them?)
+
+<br/>**Runtime** = How long the movie was in minutes
+
+<br/>**Gross** = Gross revenue generated from box office
+
 <br/>
 Unfortunately the first run through left me without a clear understanding of some of the column values. I shouldn't _assume_ I understand the meaning of certain columns since that could _impact my results_ and lead me to _misrepresent data_ as something other than what it was intended.
 Let's see if we can find a glossary on the IMDB(source-verified) website to clarify.
