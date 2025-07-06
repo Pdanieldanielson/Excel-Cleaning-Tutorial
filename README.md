@@ -7,10 +7,11 @@ I will have a version explaining the entire thought process from start to finish
 I retrieved a sample of uncleaned data from Kaggle which was posted for the purposes of data cleaning. I might go back and see how other users approached it and include any tips or commands that could provide value to your Data Analytics toolbelt in another section.
 
 Introduction: What is Data Analysis? Why clean data?
+<br/>
 Data Analysis is "the process of inspecting, cleansing, transforming, and modeling data with the goal of discovering useful information, informing conclusions, and supporting decision-making". Simply put it's looking at raw information, organizing it, studying it, and hopefully obtaining useful information to help guide better decision making. We do this in everyday life but on a much smaller scale because we simply don't have access to millions of instances of a particular event from unbiased sources. 
 You will always remember your best friend growing up, the teachers and mentors who made an impact, your first job, your first relationship, your successes and your failures. Everything you perceive in the world is through your own lens, based on your own experiences or the people around you.
 The job of a Data Analyst is to look at these events and understand the story from a third party's perspective. We seek to understand the facts. (Yes, that person at the bar last week was indeed flirting with you.)
-
+<br/>
 What are the different types of data files?
 Excel is capable of handling various types of files but the focus of this tutorial will be on .csv, .txt, and .xlsx. .Xlsx is the default format for a workbook in Excel. A .csv file is known as a Comma-separated values file, meaning if you were to open a notepad in Windows and type in a string like "Meal, Date, Calories, Cost, Worth" and on the next line "Burgers, 01/01/2025, 700, $33.76, No", saved it as a .csv, then opened it in Excel you would get the following:
 <br/>
@@ -18,7 +19,8 @@ Excel is capable of handling various types of files but the focus of this tutori
 <br/>
 Simply put, in a .csv file, the commas separate data values into columns, while a new line constitutes a record or a row. If you save it as a csv but there are no commas in the file, then each line will represent a record but there will only be one column. A .txt file is a text file with or without commas. When you try to open this in Excel it will ask you how you want to separate/format your data. If it does not have separators Excel will try to auto-format the data usually by spaces or fixed width. Obviously this can lead to data not being contained in the appropriate column and being hard to work with.
 <br/>
-Step 1: Define the Problem or Question
+**Step 1: Define the Problem or Question**
+<br/>
 You need to understand the problem before you can come up with a solution. This is in my opinion the most important step as it directs the rest of your efforts moving forward. If you have a bad hypothesis and spend hours of your time setting up pipelines and gathering data that is irrelevant to the problem you're studying it will show in your final result. If you don't know where to start it's recommended you become somewhat familiar with the subject matter and be able to define or understand the variables that determine success (and/or failure).
 <br/>
 The dataset we are working with contains information scraped from IMDB regarding the "top" Netflix movies and TV shows.
@@ -44,6 +46,7 @@ Before you begin defining the columns expand everything to a pre-formatted view.
 <br/>
 ![Error](expand3.png)
 <br/>
+**Step 2: Define columns and understand data in each column**
 
 Okay let's visually inspect the columns, on initial inspection we see that:
 
@@ -74,6 +77,8 @@ Let's see if we can find a glossary on the IMDB(source-verified) website to clar
 <br/>
 Now we have a better understanding of the columns and what they represent. So finally we can say the dataset is comprised of user-submitted reviews for Netflix Movies and TV shows on IMDB. The person who submitted this dataset included the word "top" to describe this list, however seeing as there are ten thousand records I am curious about their definition.
 What does this data provide and what can we hope to gain from it? As you can see, as I was performing the initial steps of preparing the data I already had some questions in mind as I skimmed through the records. If I were to scrape this data myself or used an API, the process would have been similar only I would have known what I was trying to collect beforehand. Here I'm simply understanding the data as if it was a report handed to me, or requested from a different department. 
+<br/>
+**Step 3: Clean Data**
 <br/>
 So now that we have some direction let's get to actually cleaning the data. You could try to clean the data in the sheet itself or save yourself some time and use PowerQuery which will provide a lot more visual clarity.
 Begin by loading the data into PowerQuery like so:
@@ -114,6 +119,8 @@ After applying the formulas we're left with
 
 You could TRIM the entire workbook to remove trailing or leading spaces and have a much more presentable dataset. I personally chose to fill in the blank spaces with "N/A" but that is up to you. Some datasets will have missing values and you'll have to use your best judgement because defaulting to "0" might skew your data especially when looking at averages.
 
+<br/>
+**Step 4: Finalize and Save a copy**
 With that we could perform some EDA with Excel but I would much rather use SQL or Python as I would be able to perform multiple queries at once. Save the file as a separate file from the original so you have a restore point in case you need to undo something or restart your project. 
 
 
