@@ -36,9 +36,9 @@ Img3
 So now that we have everything set up it's time to understand what it is we're actually looking at to determine our next steps. We know there are roughly ten thousand rows of data pertaining to movies with the headers "MOVIES	YEAR GENRE RATING	ONE-LINE STARS VOTES RunTime Gross". Sometimes datasets on Kaggle come with detailed descriptions of what each column represents in case there is any confusion. Luckily this did not so we'll have to infer what each column means. In a more high-stakes environment I would definitely recommend getting a source-verified description of a record. 
 *IMPORTANT*
 Before you begin defining the columns expand everything to a pre-formatted view. Select any value within the range and press Ctrl + A to select the entire range followed by Alt + H + O + I and Alt + H + O + A (hold alt but the letters can be pressed individually, sequentially). Alternatively click the top left icon above the first row and double click the width/height modifier on any column and or row. If it doesn't work make sure you have everything selected as indicated by green highlighted rows and columns.
-expand1
-expand2
-expand3
+!image(expand1.png)
+expand2.png
+expand3.png
 Okay let's visually inspect the columns, on initial inspection we see that:
 Movies = Title of the movie
 Year = Year released (Ordinal value)
@@ -59,7 +59,49 @@ weightedavg.png
 Now we have a better understanding of the columns and what they represent. So finally we can say the dataset is comprised of user-submitted reviews for Netflix Movies and TV shows on IMDB. The person who submitted this dataset included the word "top" to describe this list, however seeing as there are ten thousand records I am curious about their definition.
 What does this data provide and what can we hope to gain from it? As you can see, as I was performing the initial steps of preparing the data I already had some questions in mind as I skimmed through the records. If I were to scrape this data myself or used an API, the process would have been similar only I would have known what I was trying to collect beforehand. Here I'm simply understanding the data as if it was a report handed to me, or requested from a different department. 
 
-So now that we have some direction let's get to actually cleaning the data.
+So now that we have some direction let's get to actually cleaning the data. You could try to clean the data in the sheet itself or save yourself some time and use PowerQuery which will provide a lot more visual clarity.
+Begin by loading the data into PowerQuery like so:
+loaddata.png
+loaddata2.png
+loaddata3.png
+
+Next take a look at the columns and understand the formatting. We won't be able to do much with the YEAR column as it is formatted in such a way that makes it hard to select a single value and the parentheses add an additional level of clutter that doesn't look nice on visuals. We'll strip it down by using the REPLACE function. In PowerQuery select the YEAR column and right click the column and find the 'Replace values' button. We strip "(", ")", "I", and "TV Special".  We're left with the following:
+
+Replaceandtrimtext.png
+
+Since I don't know what other characters are included that could mess up the querying, I examine the values by using the down arrow next to the column name. Use the load more option to see all values.
+
+xlvideogame.png
+tvseries.png
+tvshort.png
+
+The final cleaned column should look like this:
+
+finalcleaned.png
+
+Now it's time to separate the start year and end year in case we want to do some analysis on that. We highlight the column and under the Home tab select split column. We use a custom delimiter specifying we want to split the string at the '-', keeping the first 5 characters. The reason I did this was because I want to create an additional column to essentially keep track of ongoing tv shows. We know that if the year column includes a '-' but no end year, it is because the series has not ended yet.
+
+yearsplit.png
+
+I select Add Custom Column and enter the following formula: =if Text.Contains([YEAR.1], "–") and ([YEAR.2] = null or [YEAR.2] = "") then "Ongoing" else "Finished") which is saying "If the string in the YEAR.1 column contains a hyphen AND the YEAR.2 column does not contain any value or is 'null' (meaning no end date), THEN it is "Ongoing", otherwise it is "Finished".
+
+Finally I want to separate the STARS column into Directors and Actors for future queries. This would allow me to run a command in SQL or Python to return things such as "What was X director's/actor's highest rated movie/tv show by ratings AND votes". Since some directors also star in their own films you could filter that as well.
+Again we Add Custom Column and use a function to strip the information we are looking for. 
+
+directorscolumn.png
+starscolumn.png
+
+The query is essentially identically only I am telling PowerQuery WHERE I want to return the values from by using Text.AfterDelimiter and Text.BeforeDelimiter. You'll notice that I had specify 2 variables since some movies only contained one star.
+After applying the formulas we're left with
+
+directorsstars.png
+
+You could TRIM the entire workbook to remove trailing or leading spaces and have a much more presentable dataset. I personally chose to fill in the blank spaces with "N/A" but that is up to you. Some datasets will have missing values and you'll have to use your best judgement because defaulting to "0" might skew your data especially when looking at averages.
+
+With that we could perform some EDA with Excel but I would much rather use SQL or Python as I would be able to perform multiple queries at once. Save the file as a separate file from the original so you have a restore point in case you need to undo something or restart your project. 
+
+
+
 
 
 
