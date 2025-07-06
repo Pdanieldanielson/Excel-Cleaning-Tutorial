@@ -14,7 +14,7 @@ The job of a Data Analyst is to look at these events and understand the story fr
 What are the different types of data files?
 Excel is capable of handling various types of files but the focus of this tutorial will be on .csv, .txt, and .xlsx. .Xlsx is the default format for a workbook in Excel. A .csv file is known as a Comma-separated values file, meaning if you were to open a notepad in Windows and type in a string like "Meal, Date, Calories, Cost, Worth" and on the next line "Burgers, 01/01/2025, 700, $33.76, No", saved it as a .csv, then opened it in Excel you would get the following:
 
-img2
+![Error](Img2.png)
 
 Simply put, in a .csv file, the commas separate data values into columns, while a new line constitutes a record or a row. If you save it as a csv but there are no commas in the file, then each line will represent a record but there will only be one column. A .txt file is a text file with or without commas. When you try to open this in Excel it will ask you how you want to separate/format your data. If it does not have separators Excel will try to auto-format the data usually by spaces or fixed width. Obviously this can lead to data not being contained in the appropriate column and being hard to work with.
 
@@ -25,20 +25,20 @@ You need to understand the problem before you can come up with a solution. This 
 The dataset we are working with contains information scraped from IMDB regarding the "top" Netflix movies and TV shows.
 With just the basic understanding of what should be in this data file I can begin cleaning it. First we need to load the .csv file into Excel. You can open the file in notepad first to see if it's at least formatted correctly using comma seperators.
 
-Img1
+![Error](Img1.png)
 
 Excel allows 1,048,576 rows of data and 16,384 columns of data to be viewed on any given sheet. A workbook is comprised of X amount of sheets. If the csv or xlsx file you are trying to view is comprised of more than the maximum number of records Excel will automatically truncate the dataset to fit in the sheet view meaning you will lose some data. In order to get around this you will need to Load it as a connection so that you can access all the data.
 
 You can see the number of records and various summary statistics for any given row, column, or range in the bottom right. Excel uses 1-based indexing (first record/column is 1) when viewing records but 0-based indexing (first record/column is 0) in certain functions. Just something to be aware of when querying. Since our first row are headers we know that there are 9,999 records.
 
-Img3
+![Error](Img3.png)
 
 So now that we have everything set up it's time to understand what it is we're actually looking at to determine our next steps. We know there are roughly ten thousand rows of data pertaining to movies with the headers "MOVIES	YEAR GENRE RATING	ONE-LINE STARS VOTES RunTime Gross". Sometimes datasets on Kaggle come with detailed descriptions of what each column represents in case there is any confusion. Luckily this did not so we'll have to infer what each column means. In a more high-stakes environment I would definitely recommend getting a source-verified description of a record. 
 *IMPORTANT*
 Before you begin defining the columns expand everything to a pre-formatted view. Select any value within the range and press Ctrl + A to select the entire range followed by Alt + H + O + I and Alt + H + O + A (hold alt but the letters can be pressed individually, sequentially). Alternatively click the top left icon above the first row and double click the width/height modifier on any column and or row. If it doesn't work make sure you have everything selected as indicated by green highlighted rows and columns.
-!image(expand1.png)
-expand2.png
-expand3.png
+![Error](expand1.png)
+![Error](expand2.png)
+![Error](expand3.png)
 Okay let's visually inspect the columns, on initial inspection we see that:
 Movies = Title of the movie
 Year = Year released (Ordinal value)
@@ -52,49 +52,49 @@ Gross = Gross revenue generated from box office
 
 Unfortunately the first run through left me without a clear understanding of some of the column values. I shouldn't _assume_ I understand the meaning of certain columns since that could _impact my results_ and lead me to _misrepresent data_ as something other than what it was intended.
 Let's see if we can find a glossary on the IMDB(source-verified) website to clarify.
-imdbdatadictionary.png
-ratingsdefinition.png
-weightedavg.png
+![Error](imdbdatadictionary.png)
+![Error](ratingsdefinition.png)
+![Error](weightedavg.png)
 
 Now we have a better understanding of the columns and what they represent. So finally we can say the dataset is comprised of user-submitted reviews for Netflix Movies and TV shows on IMDB. The person who submitted this dataset included the word "top" to describe this list, however seeing as there are ten thousand records I am curious about their definition.
 What does this data provide and what can we hope to gain from it? As you can see, as I was performing the initial steps of preparing the data I already had some questions in mind as I skimmed through the records. If I were to scrape this data myself or used an API, the process would have been similar only I would have known what I was trying to collect beforehand. Here I'm simply understanding the data as if it was a report handed to me, or requested from a different department. 
 
 So now that we have some direction let's get to actually cleaning the data. You could try to clean the data in the sheet itself or save yourself some time and use PowerQuery which will provide a lot more visual clarity.
 Begin by loading the data into PowerQuery like so:
-loaddata.png
-loaddata2.png
-loaddata3.png
+![Error](loaddata.png)
+![Error](loaddata2.png)
+![Error](loaddata3.png)
 
 Next take a look at the columns and understand the formatting. We won't be able to do much with the YEAR column as it is formatted in such a way that makes it hard to select a single value and the parentheses add an additional level of clutter that doesn't look nice on visuals. We'll strip it down by using the REPLACE function. In PowerQuery select the YEAR column and right click the column and find the 'Replace values' button. We strip "(", ")", "I", and "TV Special".  We're left with the following:
 
-Replaceandtrimtext.png
+![Error](Replaceandtrimtext.png)
 
 Since I don't know what other characters are included that could mess up the querying, I examine the values by using the down arrow next to the column name. Use the load more option to see all values.
 
-xlvideogame.png
-tvseries.png
-tvshort.png
+![Error](xlvideogame.png)
+![Error](tvseries.png)
+![Error](tvshort.png)
 
 The final cleaned column should look like this:
 
-finalcleaned.png
+![Error](finalcleaned.png)
 
 Now it's time to separate the start year and end year in case we want to do some analysis on that. We highlight the column and under the Home tab select split column. We use a custom delimiter specifying we want to split the string at the '-', keeping the first 5 characters. The reason I did this was because I want to create an additional column to essentially keep track of ongoing tv shows. We know that if the year column includes a '-' but no end year, it is because the series has not ended yet.
 
-yearsplit.png
+![Error](yearsplit.png)
 
 I select Add Custom Column and enter the following formula: =if Text.Contains([YEAR.1], "–") and ([YEAR.2] = null or [YEAR.2] = "") then "Ongoing" else "Finished") which is saying "If the string in the YEAR.1 column contains a hyphen AND the YEAR.2 column does not contain any value or is 'null' (meaning no end date), THEN it is "Ongoing", otherwise it is "Finished".
 
 Finally I want to separate the STARS column into Directors and Actors for future queries. This would allow me to run a command in SQL or Python to return things such as "What was X director's/actor's highest rated movie/tv show by ratings AND votes". Since some directors also star in their own films you could filter that as well.
 Again we Add Custom Column and use a function to strip the information we are looking for. 
 
-directorscolumn.png
-starscolumn.png
+![Error](directorscolumn.png)
+![Error](starscolumn.png)
 
 The query is essentially identically only I am telling PowerQuery WHERE I want to return the values from by using Text.AfterDelimiter and Text.BeforeDelimiter. You'll notice that I had specify 2 variables since some movies only contained one star.
 After applying the formulas we're left with
 
-directorsstars.png
+![Error](directorsstars.png)
 
 You could TRIM the entire workbook to remove trailing or leading spaces and have a much more presentable dataset. I personally chose to fill in the blank spaces with "N/A" but that is up to you. Some datasets will have missing values and you'll have to use your best judgement because defaulting to "0" might skew your data especially when looking at averages.
 
