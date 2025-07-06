@@ -76,20 +76,25 @@ Okay let's visually inspect the columns, on initial inspection we see that:
 <br/>
 Unfortunately the first run through left me without a clear understanding of some of the column values. I shouldn't _assume_ I understand the meaning of certain columns since that could _impact my results_ and lead me to _misrepresent data_ as something other than what it was intended.
 Let's see if we can find a glossary on the IMDB(source-verified) website to clarify.
-<br/>![Error](imdbdatadictionary.png)
-<br/>![Error](ratingsdefinition.png)
-<br/>![Error](weightedavg.png)
-<br/>
+![Error](imdbdatadictionary.png)
+
+![Error](ratingsdefinition.png)
+
+![Error](weightedavg.png)
+
 Now we have a better understanding of the columns and what they represent. So finally we can say the dataset is comprised of user-submitted reviews for Netflix Movies and TV shows on IMDB. The person who submitted this dataset included the word "top" to describe this list, however seeing as there are ten thousand records I am curious about their definition.
 What does this data provide and what can we hope to gain from it? As you can see, as I was performing the initial steps of preparing the data I already had some questions in mind as I skimmed through the records. If I were to scrape this data myself or used an API, the process would have been similar only I would have known what I was trying to collect beforehand. Here I'm simply understanding the data as if it was a report handed to me, or requested from a different department. 
-<br/>
+
 **Step 3: Clean Data**
-<br/>
+
 So now that we have some direction let's get to actually cleaning the data. You could try to clean the data in the sheet itself or save yourself some time and use PowerQuery which will provide a lot more visual clarity.
 Begin by loading the data into PowerQuery like so:
-<br/>![Error](loaddata.png)
-<br/>![Error](loaddata2.png)
-<br/>![Error](loaddata3.png)
+
+![Error](loaddata.png)
+
+![Error](loaddata2.png)
+
+![Error](loaddata3.png)
 
 Next take a look at the columns and understand the formatting. We won't be able to do much with the YEAR column as it is formatted in such a way that makes it hard to select a single value and the parentheses add an additional level of clutter that doesn't look nice on visuals. We'll strip it down by using the REPLACE function. In PowerQuery select the YEAR column and right click the column and find the 'Replace values' button. We strip "(", ")", "I", and "TV Special".  We're left with the following:
 
