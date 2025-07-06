@@ -31,7 +31,7 @@ Excel allows 1,048,576 rows of data and 16,384 columns of data to be viewed on a
 
 You can see the number of records and various summary statistics for any given row, column, or range in the bottom right. Excel uses 1-based indexing (first record/column is 1) when viewing records but 0-based indexing (first record/column is 0) in certain functions. Just something to be aware of when querying. Since our first row are headers we know that there are 9,999 records.
 
-![Error](Img3.png)
+![Error](Img3.PNG)
 
 So now that we have everything set up it's time to understand what it is we're actually looking at to determine our next steps. We know there are roughly ten thousand rows of data pertaining to movies with the headers "MOVIES	YEAR GENRE RATING	ONE-LINE STARS VOTES RunTime Gross". Sometimes datasets on Kaggle come with detailed descriptions of what each column represents in case there is any confusion. Luckily this did not so we'll have to infer what each column means. In a more high-stakes environment I would definitely recommend getting a source-verified description of a record. 
 *IMPORTANT*
