@@ -124,7 +124,7 @@ Again we Add Custom Column and use a function to strip the information we are lo
 ![Error](directorscolumn.png)
 ![Error](starscolumn.png)
 
-The query is essentially identically only I am telling PowerQuery WHERE I want to return the values from by using Text.AfterDelimiter and Text.BeforeDelimiter. You'll notice that I had specify 2 variables since some movies only contained one star.
+The query is essentially identical, only I am telling PowerQuery WHERE I want to return the values from by using Text.AfterDelimiter and Text.BeforeDelimiter. You'll notice that I had specify 2 variables since some movies only contained one star.
 After applying the formulas we're left with
 
 ![Error](directorsstars.png)
