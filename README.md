@@ -33,7 +33,9 @@ You can see the number of records and various summary statistics for any given r
 ![Error](Img3.PNG)
 <br/>
 So now that we have everything set up it's time to understand what it is we're actually looking at to determine our next steps. We know there are roughly ten thousand rows of data pertaining to movies with the headers "MOVIES	YEAR GENRE RATING	ONE-LINE STARS VOTES RunTime Gross". Sometimes datasets on Kaggle come with detailed descriptions of what each column represents in case there is any confusion. Luckily this did not so we'll have to infer what each column means. In a more high-stakes environment I would definitely recommend getting a source-verified description of a record. 
-<br/>*IMPORTANT*<br/>
+
+<br/>***IMPORTANT***<br/>
+
 Before you begin defining the columns expand everything to a pre-formatted view. Select any value within the range and press Ctrl + A to select the entire range followed by Alt + H + O + I and Alt + H + O + A (hold alt but the letters can be pressed individually, sequentially). Alternatively click the top left icon above the first row and double click the width/height modifier on any column and or row. If it doesn't work make sure you have everything selected as indicated by green highlighted rows and columns.
 <br/>
 ![Error](expand1.png)
@@ -42,7 +44,9 @@ Before you begin defining the columns expand everything to a pre-formatted view.
 <br/>
 ![Error](expand3.png)
 <br/>
+
 Okay let's visually inspect the columns, on initial inspection we see that:
+
 <br/>**Movies** = Title of the movie
 
 <br/>**Year** = Year released (Ordinal value)
