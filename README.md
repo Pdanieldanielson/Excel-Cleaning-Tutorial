@@ -130,8 +130,15 @@ After applying the formulas we're left with
 
 ![Error](directorsstars.png)
 
-You could TRIM the entire workbook to remove trailing or leading spaces and have a much more presentable dataset. I personally chose to fill in the blank spaces with "N/A" but that is up to you. Some datasets will have missing values and you'll have to use your best judgement because defaulting to "0" might skew your data especially when looking at averages.
+I would suggest using TRIM on the entire workbook to remove trailing or leading spaces and have a much more presentable dataset. 
 
+**Handling Missing Values**
+
+I chose to fill in the blank spaces with "N/A" but that is up to you. Some datasets will have missing values and you'll have to use your best judgement because defaulting to "0" might skew your data especially when looking at averages.
+
+**Removing Duplicates**
+
+You can select the entire workbook and hit Remove Duplicates from the Data tab. Duplicates are records in your dataset that are completely identical across all columns in your dataset. Since we have so many different columns to identify our data, having a duplicate would be very unlikely and if we were to find one, we could remove it with full confidence. When working with items such as transactions however, you may find identical transactions conducted on the same day by the same customer. You would need to include the Timestamp in these entries in order to avoid deleting multiple valid transactions conducted during the same day.
 
 **Step 4: Finalize and Save a copy**
 
