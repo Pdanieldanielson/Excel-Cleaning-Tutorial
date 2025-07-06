@@ -114,9 +114,11 @@ Now it's time to separate the start year and end year in case we want to do some
 
 ![Error](yearsplit.png)
 
-I select Add Custom Column and enter the following formula: =if Text.Contains([YEAR.1], "–") and ([YEAR.2] = null or [YEAR.2] = "") then "Ongoing" else "Finished") which is saying "If the string in the YEAR.1 column contains a hyphen AND the YEAR.2 column does not contain any value or is 'null' (meaning no end date), THEN it is "Ongoing", otherwise it is "Finished".
+I select Add Custom Column and enter the following formula: =if Text.Contains([YEAR.1], "–") and ([YEAR.2] = null or [YEAR.2] = "") then "Ongoing" else "Finished") which is saying "If the string in the YEAR.1 column contains a hyphen AND the YEAR.2 column does not contain any value or is 'null' (meaning no end date), THEN it is "Ongoing", otherwise it is "Finished". Once you have created the columns you can remove the hyphen from the YEAR.1 column to make it a single year.
 
-Finally I want to separate the STARS column into Directors and Actors for future queries. This would allow me to run a command in SQL or Python to return things such as "What was X director's/actor's highest rated movie/tv show by ratings AND votes". Since some directors also star in their own films you could filter that as well.
+![Error](addcustomcolumn.png)
+
+Next I want to separate the STARS column into Directors and Actors for future queries. This would allow me to run a command in SQL or Python to return things such as "What was X director's/actor's highest rated movie/tv show by ratings AND votes". Since some directors also star in their own films you could filter that as well.
 
 Again we Add Custom Column and use a function to strip the information we are looking for. 
 
