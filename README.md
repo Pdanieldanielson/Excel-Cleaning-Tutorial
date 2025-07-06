@@ -2,9 +2,7 @@
 
 This tutorial is aimed at beginners such as myself who are new to Data Analytics or have some experience and want a refresher on the basics of cleaning with Excel. 
 
-I will have a version explaining the entire thought process from start to finish working with a fresh data set and an abridged version if you only want to see the actual cleaning steps.
-
-I retrieved a sample of uncleaned data from Kaggle which was posted for the purposes of data cleaning. I might go back and see how other users approached it and include any tips or commands that could provide value to your Data Analytics toolbelt in another section.
+I retrieved a sample of uncleaned data from Kaggle (https://www.kaggle.com/datasets/bharatnatrayn/movies-dataset-for-feature-extracion-prediction/data) which was posted for the purposes of data cleaning.
 
 Introduction: What is Data Analysis? Why clean data?
 <br/>
