@@ -33,36 +33,40 @@ You can see the number of records and various summary statistics for any given r
 ![Error](Img3.PNG)
 <br/>
 So now that we have everything set up it's time to understand what it is we're actually looking at to determine our next steps. We know there are roughly ten thousand rows of data pertaining to movies with the headers "MOVIES	YEAR GENRE RATING	ONE-LINE STARS VOTES RunTime Gross". Sometimes datasets on Kaggle come with detailed descriptions of what each column represents in case there is any confusion. Luckily this did not so we'll have to infer what each column means. In a more high-stakes environment I would definitely recommend getting a source-verified description of a record. 
-/n*IMPORTANT*/n
+<br/>*IMPORTANT*<br/>
 Before you begin defining the columns expand everything to a pre-formatted view. Select any value within the range and press Ctrl + A to select the entire range followed by Alt + H + O + I and Alt + H + O + A (hold alt but the letters can be pressed individually, sequentially). Alternatively click the top left icon above the first row and double click the width/height modifier on any column and or row. If it doesn't work make sure you have everything selected as indicated by green highlighted rows and columns.
+<br/>
 ![Error](expand1.png)
+<br/>
 ![Error](expand2.png)
+<br/>
 ![Error](expand3.png)
+<br/>
 Okay let's visually inspect the columns, on initial inspection we see that:
-Movies = Title of the movie
-Year = Year released (Ordinal value)
-Genre = Classified Genre (Nominal, could be used for popularity or ranking)
-Rating = The rating given by User? Overall? Critic? (We'll have to check on this)
-One-line = One-line description of movie (Could be used in phrase analysis to identify movies having similar plots vs reviews, it's a stretch)
-Stars = Who is in the movie, some records include directors while others only list actors (Interesting to see average rating of movies for certain celebrities and directors, even though it's based on an entirely subjective scale)
-Votes = Total votes (Votes by whom and what context. Votes for Actor, Director, Cinematography, Hair, Amount of hand lotion used by cameramen? Best use of funfetti on the cupcakes at craft services? What does Votes mean and who are casting them?)
-Runtime = How long the movie was in minutes
-Gross = Gross revenue generated from box office
-
+<br/>Movies = Title of the movie
+<br/>Year = Year released (Ordinal value)
+<br/>Genre = Classified Genre (Nominal, could be used for popularity or ranking)
+<br/>Rating = The rating given by User? Overall? Critic? (We'll have to check on this)
+<br/>One-line = One-line description of movie (Could be used in phrase analysis to identify movies having similar plots vs reviews, it's a stretch)
+<br/>Stars = Who is in the movie, some records include directors while others only list actors (Interesting to see average rating of movies for certain celebrities and directors, even though it's based on an entirely subjective scale)
+<br/>Votes = Total votes (Votes by whom and what context. Votes for Actor, Director, Cinematography, Hair, Amount of hand lotion used by cameramen? Best use of funfetti on the cupcakes at craft services? What does Votes mean and who are casting them?)
+<br/>Runtime = How long the movie was in minutes
+<br/>Gross = Gross revenue generated from box office
+<br/>
 Unfortunately the first run through left me without a clear understanding of some of the column values. I shouldn't _assume_ I understand the meaning of certain columns since that could _impact my results_ and lead me to _misrepresent data_ as something other than what it was intended.
 Let's see if we can find a glossary on the IMDB(source-verified) website to clarify.
-![Error](imdbdatadictionary.png)
-![Error](ratingsdefinition.png)
-![Error](weightedavg.png)
-
+<br/>![Error](imdbdatadictionary.png)
+<br/>![Error](ratingsdefinition.png)
+<br/>![Error](weightedavg.png)
+<br/>
 Now we have a better understanding of the columns and what they represent. So finally we can say the dataset is comprised of user-submitted reviews for Netflix Movies and TV shows on IMDB. The person who submitted this dataset included the word "top" to describe this list, however seeing as there are ten thousand records I am curious about their definition.
 What does this data provide and what can we hope to gain from it? As you can see, as I was performing the initial steps of preparing the data I already had some questions in mind as I skimmed through the records. If I were to scrape this data myself or used an API, the process would have been similar only I would have known what I was trying to collect beforehand. Here I'm simply understanding the data as if it was a report handed to me, or requested from a different department. 
-
+<br/>
 So now that we have some direction let's get to actually cleaning the data. You could try to clean the data in the sheet itself or save yourself some time and use PowerQuery which will provide a lot more visual clarity.
 Begin by loading the data into PowerQuery like so:
-![Error](loaddata.png)
-![Error](loaddata2.png)
-![Error](loaddata3.png)
+<br/>![Error](loaddata.png)
+<br/>![Error](loaddata2.png)
+<br/>![Error](loaddata3.png)
 
 Next take a look at the columns and understand the formatting. We won't be able to do much with the YEAR column as it is formatted in such a way that makes it hard to select a single value and the parentheses add an additional level of clutter that doesn't look nice on visuals. We'll strip it down by using the REPLACE function. In PowerQuery select the YEAR column and right click the column and find the 'Replace values' button. We strip "(", ")", "I", and "TV Special".  We're left with the following:
 
