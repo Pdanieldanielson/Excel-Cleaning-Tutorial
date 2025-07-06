@@ -132,8 +132,9 @@ After applying the formulas we're left with
 
 You could TRIM the entire workbook to remove trailing or leading spaces and have a much more presentable dataset. I personally chose to fill in the blank spaces with "N/A" but that is up to you. Some datasets will have missing values and you'll have to use your best judgement because defaulting to "0" might skew your data especially when looking at averages.
 
-<br/>
+
 **Step 4: Finalize and Save a copy**
+
 With that we could perform some EDA with Excel but I would much rather use SQL or Python as I would be able to perform multiple queries at once. Save the file as a separate file from the original so you have a restore point in case you need to undo something or restart your project. 
 
 
