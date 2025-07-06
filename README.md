@@ -8,9 +8,14 @@ I retrieved a sample of uncleaned data from Kaggle which was posted for the purp
 
 Introduction: What is Data Analysis? Why clean data?
 <br/>
+
 Data Analysis is "the process of inspecting, cleansing, transforming, and modeling data with the goal of discovering useful information, informing conclusions, and supporting decision-making". Simply put it's looking at raw information, organizing it, studying it, and hopefully obtaining useful information to help guide better decision making. We do this in everyday life but on a much smaller scale because we simply don't have access to millions of instances of a particular event from unbiased sources. 
+
 You will always remember your best friend growing up, the teachers and mentors who made an impact, your first job, your first relationship, your successes and your failures. Everything you perceive in the world is through your own lens, based on your own experiences or the people around you.
+
 The job of a Data Analyst is to look at these events and understand the story from a third party's perspective. We seek to understand the facts. (Yes, that person at the bar last week was indeed flirting with you.)
+
+
 <br/>
 What are the different types of data files?
 Excel is capable of handling various types of files but the focus of this tutorial will be on .csv, .txt, and .xlsx. .Xlsx is the default format for a workbook in Excel. A .csv file is known as a Comma-separated values file, meaning if you were to open a notepad in Windows and type in a string like "Meal, Date, Calories, Cost, Worth" and on the next line "Burgers, 01/01/2025, 700, $33.76, No", saved it as a .csv, then opened it in Excel you would get the following:
