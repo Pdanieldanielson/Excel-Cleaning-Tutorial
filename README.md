@@ -19,9 +19,9 @@ The job of a Data Analyst is to look at these events and understand the story fr
 <br/>
 What are the different types of data files?
 Excel is capable of handling various types of files but the focus of this tutorial will be on .csv, .txt, and .xlsx. .Xlsx is the default format for a workbook in Excel. A .csv file is known as a Comma-separated values file, meaning if you were to open a notepad in Windows and type in a string like "Meal, Date, Calories, Cost, Worth" and on the next line "Burgers, 01/01/2025, 700, $33.76, No", saved it as a .csv, then opened it in Excel you would get the following:
-<br/>
+
 ![Error](Img2.png)
-<br/>
+
 Simply put, in a .csv file, the commas separate data values into columns, while a new line constitutes a record or a row. If you save it as a csv but there are no commas in the file, then each line will represent a record but there will only be one column. A .txt file is a text file with or without commas. When you try to open this in Excel it will ask you how you want to separate/format your data. If it does not have separators Excel will try to auto-format the data usually by spaces or fixed width. Obviously this can lead to data not being contained in the appropriate column and being hard to work with.
 <br/>
 **Step 1: Define the Problem or Question**
@@ -30,27 +30,27 @@ You need to understand the problem before you can come up with a solution. This 
 <br/>
 The dataset we are working with contains information scraped from IMDB regarding the "top" Netflix movies and TV shows.
 With just the basic understanding of what should be in this data file I can begin cleaning it. First we need to load the .csv file into Excel. You can open the file in notepad first to see if it's at least formatted correctly using comma seperators.
-<br/>
+
 ![Error](Img1.png)
-<br/>
+
 Excel allows 1,048,576 rows of data and 16,384 columns of data to be viewed on any given sheet. A workbook is comprised of X amount of sheets. If the csv or xlsx file you are trying to view is comprised of more than the maximum number of records Excel will automatically truncate the dataset to fit in the sheet view meaning you will lose some data. In order to get around this you will need to Load it as a connection so that you can access all the data.
-<br/>
+
 You can see the number of records and various summary statistics for any given row, column, or range in the bottom right. Excel uses 1-based indexing (first record/column is 1) when viewing records but 0-based indexing (first record/column is 0) in certain functions. Just something to be aware of when querying. Since our first row are headers we know that there are 9,999 records.
-<br/>
+
 ![Error](Img3.PNG)
-<br/>
+
 So now that we have everything set up it's time to understand what it is we're actually looking at to determine our next steps. We know there are roughly ten thousand rows of data pertaining to movies with the headers "MOVIES	YEAR GENRE RATING	ONE-LINE STARS VOTES RunTime Gross". Sometimes datasets on Kaggle come with detailed descriptions of what each column represents in case there is any confusion. Luckily this did not so we'll have to infer what each column means. In a more high-stakes environment I would definitely recommend getting a source-verified description of a record. 
 
 <br/>***IMPORTANT***<br/>
 
 Before you begin defining the columns expand everything to a pre-formatted view. Select any value within the range and press Ctrl + A to select the entire range followed by Alt + H + O + I and Alt + H + O + A (hold alt but the letters can be pressed individually, sequentially). Alternatively click the top left icon above the first row and double click the width/height modifier on any column and or row. If it doesn't work make sure you have everything selected as indicated by green highlighted rows and columns.
-<br/>
+
 ![Error](expand1.png)
-<br/>
+
 ![Error](expand2.png)
-<br/>
+
 ![Error](expand3.png)
-<br/>
+
 **Step 2: Define columns and understand data in each column**
 
 Okay let's visually inspect the columns, on initial inspection we see that:
