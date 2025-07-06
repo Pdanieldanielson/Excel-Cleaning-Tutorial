@@ -15,6 +15,7 @@ The job of a Data Analyst is to look at these events and understand the story fr
 
 
 **What are the different types of data files?**
+
 Excel is capable of handling various types of files but the focus of this tutorial will be on .csv, .txt, and .xlsx. .Xlsx is the default format for a workbook in Excel. A .csv file is known as a Comma-separated values file, meaning if you were to open a notepad in Windows and type in a string like "Meal, Date, Calories, Cost, Worth" and on the next line "Burgers, 01/01/2025, 700, $33.76, No", saved it as a .csv, then opened it in Excel you would get the following:
 
 ![Error](Img2.png)
